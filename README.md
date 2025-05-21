@@ -16,7 +16,7 @@
 
 ### 2. 배포 주소
 
-[Vercel에서 배포된 웹사이트 보기](https://assign3-conkdjs9w-mangodetectives-projects.vercel.app/)
+[Vercel에서 배포된 웹사이트 보기](https://assign3-mu.vercel.app/)
 
 
 ---
