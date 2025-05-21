@@ -1,9 +1,3 @@
-다음 내용을 **그대로 복사해서 `README.md` 파일로 저장**하시면 됩니다.
-GitHub `https://github.com/mangodetective/assign3/tree/main` 저장소에 사용하기 적합한 **운세 웹앱용 README**입니다.
-
----
-
-```markdown
 # ✨ Assign3 - 당신의 운세 웹앱
 
 이 프로젝트는 사용자의 이름과 생년월일을 입력받아, Google Gemini API를 통해 사주 기반의 오늘의 운세를 제공하는 웹 애플리케이션입니다.
