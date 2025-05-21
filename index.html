@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>당신의 운세를 알아보세요</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-top: 0.25rem;
+    }
+    button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #result {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>당신의 운세를 알아보세요</h1>
+
+  <form id="fortune-form">
+    <label for="name">이름</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="birth">생년월일 (예: 1983-05-15)</label>
+    <input type="date" id="birth" name="birth" required />
+
+    <button type="submit">운세 확인하기</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    const form = document.getElementById("fortune-form");
+    const resultDiv = document.getElementById("result");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const birth = document.getElementById("birth").value;
+      
+      resultDiv.textContent = "운세를 불러오는 중입니다...";
+
+      try {
+        // 반드시 "/api/duksungAI" 경로로 요청을 보냄
+const response = await fetch("/api/duksungAI", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ name, birth })
+});
+
+
+
+        const data = await response.json();
+
+        if (response.ok) {
+          resultDiv.textContent = data.answer;
+        } else {
+          resultDiv.textContent = `오류: ${data.error}`;
+        }
+      } catch (err) {
+        resultDiv.textContent = "서버와 통신 중 오류가 발생했습니다.";
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

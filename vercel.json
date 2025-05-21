@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/duksungAI.js", "use": "@vercel/node" },
+    { "src": "index.html", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/api/duksungAI", "dest": "api/duksungAI.js" },
+    { "src": "/(.*)", "dest": "index.html" }
+  ]
+}
